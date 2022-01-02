@@ -31,9 +31,11 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @PropertySource({ "classpath:persistence-mysql.properties" })
 public class DemoAppConfig implements WebMvcConfigurer {
 
+	// set up variable to hold the properties
 	@Autowired
 	private Environment env;
-	
+
+	// set up a logger for diagnostics
 	private Logger logger = Logger.getLogger(getClass().getName());
 
 	@Bean
@@ -44,7 +46,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 
 		// set the jdbc driver
 		try {
-			myDataSource.setDriverClass("com.mysql.jdbc.Driver");		
+			myDataSource.setDriverClass(env.getProperty("jdbc.driver"));
 		}
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
