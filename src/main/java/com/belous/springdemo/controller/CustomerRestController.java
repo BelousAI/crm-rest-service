@@ -49,4 +49,12 @@ public class CustomerRestController {
         customerService.saveCustomer(theCustomer);
         return theCustomer;
     }
+
+    // add mapping for DELETE /customers/{customerId} - delete customer by id
+    @DeleteMapping("/customers/{customerId}")
+    public String deleteCustomer(@PathVariable int customerId) {
+
+        customerService.deleteCustomer(customerId);
+        return "Deleted customer id - " + customerId;
+    }
 }
